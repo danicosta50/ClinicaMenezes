@@ -298,8 +298,8 @@ public class PacienteEditar extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnPacientes8ActionPerformed
 
     private void BtnPacientes10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPacientes10ActionPerformed
-        //OrcamentoTela orcamento = new OrcamentoTela(paciente);
-        //orcamento.setVisible(true);
+      Orcamento_lista orcamento_lista = new Orcamento_lista(paciente);
+       orcamento_lista.setVisible(true);
     }//GEN-LAST:event_BtnPacientes10ActionPerformed
 
     private void BtnPacientes9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPacientes9ActionPerformed

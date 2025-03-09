@@ -25,9 +25,9 @@ public class paciente {
     private String dataNasc;
     private String email;
     private String Historico_medico;
-    private String orcamento;
+  
      
-     private String Data_orcamento;
+  
 
     public paciente() {
     }
@@ -42,29 +42,12 @@ public class paciente {
         this.dataNasc = dataNasc;
         this.email = email;
         this.Historico_medico = "";
-        this.orcamento = "";
-        this.Data_orcamento =" ";
+     
     }
 
-    public void setData_orcamento(String Data_orcamento) {
-        this.Data_orcamento = Data_orcamento;
-    }
+  
 
 
-
-    public String getOrcamento() {
-        return orcamento;
-    }
-
-
-
-    public void setOrcamento(String orcamento) {
-        this.orcamento = orcamento;
-    }
-
-    public String getData_orcamento() {
-        return Data_orcamento;
-    }
 
   
      

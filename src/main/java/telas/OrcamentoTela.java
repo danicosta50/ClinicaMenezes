@@ -6,6 +6,7 @@
 package telas;
 
 
+import classes.Orcamento;
 import classes.paciente;
 
 /**
@@ -14,19 +15,21 @@ import classes.paciente;
  */
 public class OrcamentoTela extends javax.swing.JFrame {
   
-    private paciente paciente;
+ 
     /**
      * Creates new form OrcamentoTela
      */
     public OrcamentoTela() {
         initComponents();
     }
-       public OrcamentoTela(paciente paciente) {
+    Orcamento orcamento;
+       public OrcamentoTela(Orcamento orcamento) {
         initComponents();
-        this.paciente = paciente;
-        TxtData.setText(paciente.getData_orcamento());
-        TxtData.setText(paciente.getData_orcamento());
-        TxtDescricao.setText(paciente.getOrcamento());
+        
+        TxtValor.setText(String.valueOf(orcamento.getValor()));
+       
+        TxtDescricao.setText(orcamento.getDescricao());
+        this.orcamento = orcamento;
     }
 
     /**
@@ -41,7 +44,7 @@ public class OrcamentoTela extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        TxtData = new javax.swing.JTextField();
+        TxtValor = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         TxtDescricao = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -53,7 +56,7 @@ public class OrcamentoTela extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Orçamento");
 
-        jLabel2.setText("Data");
+        jLabel2.setText("Valor");
 
         jLabel3.setText("Descrição");
 
@@ -89,7 +92,7 @@ public class OrcamentoTela extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel2)
                                         .addGap(33, 33, 33)
-                                        .addComponent(TxtData, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(TxtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(107, 107, 107)
                                 .addComponent(jButton1)))
@@ -109,7 +112,7 @@ public class OrcamentoTela extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(TxtData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TxtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
@@ -149,8 +152,8 @@ public class OrcamentoTela extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       paciente.setData_orcamento(TxtData.getText());
-     paciente.setOrcamento(TxtDescricao.getText());
+      orcamento.setDescricao(TxtDescricao.getText());
+      orcamento.setValor(Integer.parseInt(TxtValor.getText()));
      dispose();
       
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -192,8 +195,8 @@ public class OrcamentoTela extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField TxtData;
     private javax.swing.JTextField TxtDescricao;
+    private javax.swing.JTextField TxtValor;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

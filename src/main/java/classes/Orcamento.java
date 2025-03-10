@@ -5,14 +5,22 @@
  */
 package classes;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 /**
  *
  * @author F2258573
  */
+@Entity
 public class Orcamento {
+      @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-   private int valor;
-    private String Descricao;
+   private int id_item;
+
     private int paciente_id;
  
 
@@ -20,8 +28,8 @@ public class Orcamento {
     
 
 public Orcamento(paciente paciente){
-    this.valor = 0;
-    this.Descricao="";
+ 
+    
     this.paciente_id = paciente.getId();
     
    
@@ -43,25 +51,16 @@ public Orcamento(paciente paciente){
         this.paciente_id = paciente_id;
     }
 
+    public int getId_item() {
+        return id_item;
+    }
+
+    public void setId_item(int id_item) {
+        this.id_item = id_item;
+    }
+
 
    
 
-    public String getDescricao() {
-        return Descricao;
-    }
-
-    public int getValor() {
-        return valor;
-    }
-
-    public void setValor(int valor) {
-        this.valor = valor;
-    }
-
-   
-
-    public void setDescricao(String Descricao) {
-        this.Descricao = Descricao;
-    }
     
 }

@@ -18,20 +18,21 @@ public class consulta {
         private int id;
     private String nomePaciente;
     private String cpf;
+    private Integer id_paciente;
 
     private Date dataConsulta;
     private String Valor;
-     private boolean consultaPaga;
+  
     private boolean consultaRealizada;
     private String receitaObservacoes;
 
-    public consulta(String nomePaciente, Date dataConsulta) {
+    public consulta(String nomePaciente,Integer id_paciente, Date dataConsulta) {
         this.nomePaciente = nomePaciente;
         this.dataConsulta = dataConsulta;
         this.cpf = "";
         this.receitaObservacoes = "";
         this.consultaRealizada = false;
-        this.consultaPaga = false;
+        this.id_paciente = id_paciente;
         this.Valor = "";
     }
 
@@ -46,17 +47,25 @@ public class consulta {
         this.Valor = Valor;
     }
 
-    public void setConsultaPaga(boolean consultaPaga) {
-        this.consultaPaga = consultaPaga;
+    public Integer getId_paciente() {
+        return id_paciente;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setId_paciente(Integer id_paciente) {
+        this.id_paciente = id_paciente;
+    }
+
+
 
     public String getValor() {
         return Valor;
     }
 
-    public boolean isConsultaPaga() {
-        return consultaPaga;
-    }
+   
 
     public void setNomePaciente(String nomePaciente) {
         this.nomePaciente = nomePaciente;

@@ -30,7 +30,7 @@ public class Orcamento_lista extends javax.swing.JFrame {
         preenchertabela();
     }
     private void preenchertabela(){
-        String[] colunas = { "Descrição", "Valor"};
+        String[] colunas = { "Item","Descrição", "Valor"};
         DefaultTableModel tabeloModelo = new DefaultTableModel(colunas, 0);
        orcamentoDAO orcamentoDAO = new orcamentoDAO();
         List<Orcamento> lista= orcamentoDAO.listar(paciente.getId());
@@ -38,10 +38,10 @@ public class Orcamento_lista extends javax.swing.JFrame {
       // Extraímos os dados
       Orcamento orcamento = lista.get(i);
   
-     
+     //vai ter que pegar cada orcamento, e pelo id do item deste orcamento, pegar descricao, nome, etc deste item
     
       String[] linha = { 
-         orcamento.getDescricao(), String.valueOf(orcamento.getValor())
+         orcamento.getId_item().get
       };
       tabeloModelo.addRow(linha);
         

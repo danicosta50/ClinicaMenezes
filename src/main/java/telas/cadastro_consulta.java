@@ -343,10 +343,10 @@ public class cadastro_consulta extends javax.swing.JFrame {
             { e.printStackTrace();
             }
             if (date != null)
-            { consulta consulta = new consulta(pacienteSelecionado.getNome(), date);
+            { consulta consulta = new consulta(pacienteSelecionado.getNome(),pacienteSelecionado.getId(), date);
                 consulta.setReceitaObservacoes(TxtReceitaObs.getText());
                 consulta.setConsultaRealizada(check_consulta_realizada.isSelected());
-                consulta.setConsultaPaga(Check_Pago.isSelected());
+               
                 consulta.setValor(TxtValor.getText());
                 consultaDAO consultaDAO = new consultaDAO();
                 consultaDAO.cadastrar(consulta);

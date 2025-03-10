@@ -2,6 +2,7 @@ package DAO;
 
 import DAO.JPAUtil;
 import classes.Orcamento;
+import classes.OrcamentoItem;
 import classes.consulta;
 import classes.paciente;
  import jakarta.persistence.EntityManager;
@@ -12,9 +13,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.swing.JOptionPane;
   
-  public class orcamentoDAO {
+  public class OrcamentoItemDAO {
       
-      public void cadastrar(Orcamento o){
+      public void cadastrar(OrcamentoItem o){
           EntityManager em = JPAUtil.getEntityManager();
           try {
               em.getTransaction().begin();
@@ -31,24 +32,21 @@ import javax.swing.JOptionPane;
           }
       }
  
-public List<Orcamento> listar(int paciente_id) {  
+public List<OrcamentoItem> listar() {  
     EntityManager em = JPAUtil.getEntityManager();
     try {
-        String textoquery = " SELECT o FROM Orcamento o "
-                + "WHERE ( O.id_paciente = :paciente_id ) "
+        String textoquery = " SELECT o FROM OrcamentoItem o "
+             
                ;
         Query consultaSql = em.createQuery(textoquery);     
         
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        
-       
-        consultaSql.setParameter("paciente_id", paciente_id );       
+      
 
-        List<Orcamento> orcamentoLista = consultaSql.getResultList();
+        List<OrcamentoItem> orcamentoLista = consultaSql.getResultList();
         return orcamentoLista;
     } catch(Exception e) {
         em.getTransaction().rollback();
-        JOptionPane.showMessageDialog(null, "Erro ao listar consultas: " + e);
+        JOptionPane.showMessageDialog(null, "Erro ao listar itens de orcamento: " + e);
         throw e;
     } finally {
         JPAUtil.closeEntityManager();
@@ -68,7 +66,7 @@ public List<Orcamento> listar(int paciente_id) {
           }
       }catch(Exception e){
           em.getTransaction().rollback();
-           JOptionPane.showMessageDialog(null, "erro ao cadastrar consulta" + e);
+           JOptionPane.showMessageDialog(null, "erro ao excluir" + e);
           throw e;
       }
       finally{
@@ -77,16 +75,16 @@ public List<Orcamento> listar(int paciente_id) {
     }  
          
          
-   public void atualizar(Orcamento orcamento){
+   public void atualizar(OrcamentoItem orcamentoItem){
       EntityManager em = JPAUtil.getEntityManager();
       try{
-        Orcamento o  = em.find(Orcamento.class, orcamento.getId());
+        OrcamentoItem o  = em.find(OrcamentoItem.class, orcamentoItem.getId());
 
           if(o != null){
               em.getTransaction().begin();
-             o.setId_item(orcamento.getId_item());
-             o.setPaciente_id(orcamento.getPaciente_id());
-            
+             o.setDescricao(orcamentoItem.getDescricao());
+             o.setItem(orcamentoItem.getItem());
+             o.setValor(orcamentoItem.getValor());
              
             
               em.getTransaction().commit();

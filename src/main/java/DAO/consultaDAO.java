@@ -126,7 +126,7 @@ public List<consulta> listar(String nome, String dataIni, String dataFim) {
 
           if(c != null){
               em.getTransaction().begin();
-             c.setConsultaPaga(consulta.isConsultaPaga());
+          
              c.setConsultaRealizada(consulta.isConsultaRealizada());
              c.setCpf(consulta.getCpf());
              c.setDataConsulta(consulta.getDataConsulta());

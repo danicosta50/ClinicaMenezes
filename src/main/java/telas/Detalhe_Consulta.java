@@ -30,9 +30,7 @@ public class Detalhe_Consulta extends javax.swing.JFrame {
     check_consulta_realizada.setSelected(consulta.isConsultaRealizada());
     check_consulta_realizada.setEnabled(true);
 
-    TxtPago.setSelected(consulta.isConsultaPaga());
-    TxtPago.setEnabled(true);
-    TxtValor.setText(consulta.getValor());
+  
 }
 
 public Detalhe_Consulta(consulta consulta) {
@@ -43,9 +41,7 @@ public Detalhe_Consulta(consulta consulta) {
 
     check_consulta_realizada.setSelected(consulta.isConsultaRealizada());
     check_consulta_realizada.setEnabled(true);
-   TxtValor.setText(consulta.getValor());
-    TxtPago.setSelected(consulta.isConsultaPaga());
-    TxtPago.setEnabled(true);
+  
 }
 
 
@@ -59,11 +55,8 @@ public Detalhe_Consulta(consulta consulta) {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TxtReceitaObs = new javax.swing.JTextPane();
-        jLabel3 = new javax.swing.JLabel();
-        TxtValor = new javax.swing.JTextField();
         BtnSalvar = new javax.swing.JButton();
         BtnPacientes8 = new javax.swing.JButton();
-        TxtPago = new javax.swing.JCheckBox();
         BtnPacientes9 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -95,13 +88,6 @@ public Detalhe_Consulta(consulta consulta) {
         TxtReceitaObs.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(TxtReceitaObs);
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Valor do procedimento:");
-
-        TxtValor.setBackground(new java.awt.Color(255, 255, 255));
-        TxtValor.setForeground(new java.awt.Color(0, 0, 0));
-
         BtnSalvar.setBackground(new java.awt.Color(153, 153, 0));
         BtnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         BtnSalvar.setForeground(new java.awt.Color(0, 0, 0));
@@ -121,10 +107,6 @@ public Detalhe_Consulta(consulta consulta) {
                 BtnPacientes8ActionPerformed(evt);
             }
         });
-
-        TxtPago.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        TxtPago.setForeground(new java.awt.Color(0, 0, 0));
-        TxtPago.setText("Procedimento pago?");
 
         BtnPacientes9.setBackground(new java.awt.Color(153, 153, 0));
         BtnPacientes9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -149,19 +131,10 @@ public Detalhe_Consulta(consulta consulta) {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(BtnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(BtnPacientes9, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20)
-                                .addComponent(BtnPacientes8, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(TxtPago, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(194, 194, 194)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TxtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(18, 18, 18)
+                        .addComponent(BtnPacientes9, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(BtnPacientes8, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -174,13 +147,8 @@ public Detalhe_Consulta(consulta consulta) {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(43, 43, 43)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(TxtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TxtPago)
                     .addComponent(BtnPacientes8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnPacientes9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -218,8 +186,7 @@ public Detalhe_Consulta(consulta consulta) {
     private void BtnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalvarActionPerformed
         consulta.setReceitaObservacoes(TxtReceitaObs.getText());  
         consulta.setConsultaRealizada(check_consulta_realizada.isSelected());
-        consulta.setConsultaPaga(TxtPago.isSelected());
-        consulta.setValor(TxtValor.getText());
+      
         consulta.setConsultaRealizada(check_consulta_realizada.isSelected());
         consultaDAO consultaDAO = new consultaDAO();
         consultaDAO.atualizar(consulta);
@@ -275,13 +242,10 @@ public Detalhe_Consulta(consulta consulta) {
     private javax.swing.JButton BtnPacientes8;
     private javax.swing.JButton BtnPacientes9;
     private javax.swing.JButton BtnSalvar;
-    private javax.swing.JCheckBox TxtPago;
     private javax.swing.JTextPane TxtReceitaObs;
-    private javax.swing.JTextField TxtValor;
     private javax.swing.JCheckBox check_consulta_realizada;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

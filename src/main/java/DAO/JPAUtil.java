@@ -11,8 +11,7 @@ package DAO;
   import jakarta.persistence.Persistence;
   
   public class JPAUtil {
-    //constante para centralizar o nome da unidade de persistência
-    // se o nome mudar, precisaremos alterar em um só lugar
+ 
     private static final String PERSISTENCE_UNIT = "odonto";
     
     private static EntityManager em;

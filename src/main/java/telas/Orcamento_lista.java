@@ -5,10 +5,12 @@
  */
 package telas;
 
+import DAO.OrcamentoItemDAO;
 import DAO.consultaDAO;
 import DAO.orcamentoDAO;
 import DAO.pacienteDAO;
 import classes.Orcamento;
+import classes.OrcamentoItem;
 import classes.consulta;
 import classes.paciente;
 import java.util.List;
@@ -33,21 +35,23 @@ public class Orcamento_lista extends javax.swing.JFrame {
         String[] colunas = { "Item","Descrição", "Valor"};
         DefaultTableModel tabeloModelo = new DefaultTableModel(colunas, 0);
        orcamentoDAO orcamentoDAO = new orcamentoDAO();
+       OrcamentoItemDAO OrcamentoItemDAO  = new OrcamentoItemDAO();
+       List<OrcamentoItem> ListaItens = OrcamentoItemDAO.listar();
         List<Orcamento> lista= orcamentoDAO.listar(paciente.getId());
                  for(int i = 0; i < lista.size(); i++) {
-      // Extraímos os dados
-      Orcamento orcamento = lista.get(i);
-  
-     //vai ter que pegar cada orcamento, e pelo id do item deste orcamento, pegar descricao, nome, etc deste item
-    
-      String[] linha = { 
-         orcamento.getId_item().get
-      };
-      tabeloModelo.addRow(linha);
-        
-      jTable1.setModel(tabeloModelo);
-  
-       jTable1.repaint();
+                    // Extraímos os dados
+                    Orcamento orcamento = lista.get(i);
+                    OrcamentoItem OrcamentoItem = ListaItens.get(orcamento.getId_item());
+                   //vai ter que pegar cada orcamento, e pelo id do item deste orcamento, pegar descricao, nome, etc deste item
+
+                    String[] linha = { 
+                       OrcamentoItem.getItem(),OrcamentoItem.getDescricao(),Integer.toString(OrcamentoItem.getValor())
+                    };
+                    tabeloModelo.addRow(linha);
+
+                    jTable1.setModel(tabeloModelo);
+
+                     jTable1.repaint();
     }
         
     }

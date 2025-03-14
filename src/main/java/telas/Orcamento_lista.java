@@ -30,9 +30,33 @@ public class Orcamento_lista extends javax.swing.JFrame {
         initComponents();
         this.paciente=paciente;
         preenchertabela();
+        preenchertabelaitens();
     }
+    
+    private void preenchertabelaitens(){
+               String[] colunas = { "Id", "Item","Descrição","Valor"};
+        DefaultTableModel tabelaModelo = new DefaultTableModel(colunas, 0);
+        OrcamentoItemDAO OrcamentoItemDAO = new OrcamentoItemDAO();
+                List<OrcamentoItem> lista = OrcamentoItemDAO.listar();
+       
+                 for(int i = 0; i < lista.size(); i++) {
+      // Extraímos os dados
+     OrcamentoItem OrcamentoItem = lista.get(i);
+     String OrcamentoItemString = Integer.toString(OrcamentoItem.getId()); 
+      String OrcamentoValor = Integer.toString(OrcamentoItem.getValor()); 
+      String[] linha = { 
+      OrcamentoItemString,OrcamentoItem.getItem(), OrcamentoItem.getDescricao(),OrcamentoValor
+      };
+      tabelaModelo.addRow(linha);
+        
+     
+  
+    }
+                 Tabela.setModel(tabelaModelo);
+    }
+    
     private void preenchertabela(){
-        String[] colunas = { "Item","Descrição", "Valor"};
+        String[] colunas = { "Id", "Item","Descrição", "Valor"};
         DefaultTableModel tabeloModelo = new DefaultTableModel(colunas, 0);
        orcamentoDAO orcamentoDAO = new orcamentoDAO();
        OrcamentoItemDAO OrcamentoItemDAO  = new OrcamentoItemDAO();
@@ -45,7 +69,7 @@ public class Orcamento_lista extends javax.swing.JFrame {
                    //vai ter que pegar cada orcamento, e pelo id do item deste orcamento, pegar descricao, nome, etc deste item
 
                     String[] linha = { 
-                       OrcamentoItem.getItem(),OrcamentoItem.getDescricao(),Integer.toString(OrcamentoItem.getValor())
+                       String.valueOf(orcamento.getId()) ,OrcamentoItem.getItem(),OrcamentoItem.getDescricao(),Integer.toString(OrcamentoItem.getValor())
                     };
                     tabeloModelo.addRow(linha);
 
@@ -70,6 +94,10 @@ public class Orcamento_lista extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Tabela = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,22 +123,52 @@ public class Orcamento_lista extends javax.swing.JFrame {
 
         jLabel1.setText("Orçamentos");
 
+        jButton3.setText("Adicionar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Excluir");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        Tabela.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(Tabela);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9))
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jButton2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton4))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(266, 266, 266))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -118,11 +176,17 @@ public class Orcamento_lista extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(jButton2)
-                .addGap(45, 45, 45))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton3)
+                .addGap(58, 58, 58))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -136,10 +200,7 @@ public class Orcamento_lista extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -148,13 +209,26 @@ public class Orcamento_lista extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
                int selectedRow = jTable1.getSelectedRow(); // Obtém a linha selecionada na tabela.
         if (selectedRow != -1) { // Verifica se uma linha foi selecionada.
-          orcamentoDAO orcamentoDAO = new orcamentoDAO();
+             Object selectedValue = jTable1.getValueAt(selectedRow, 0);
+                String orcamentoSelecionadoId = (String) selectedValue;
+                     Orcamento orcamentoselecionado = new Orcamento(Integer.parseInt(orcamentoSelecionadoId));
+
           
-            Orcamento orcamentoselecionado = orcamentoDAO.listar(paciente.getId()).get(selectedRow);
-        OrcamentoTela orcamentotela = new OrcamentoTela(orcamentoselecionado);
+         ;
+            //Orcamento orcamentoselecionado = orcamentoDAO.listar(paciente.getId()).get(selectedRow);
+        OrcamentoTelaEditar orcamentotela = new OrcamentoTelaEditar(orcamentoselecionado);
         orcamentotela.setVisible(true);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        
+    
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -186,10 +260,14 @@ public class Orcamento_lista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable Tabela;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

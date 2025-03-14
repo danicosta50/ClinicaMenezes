@@ -18,7 +18,7 @@ public class OrcamentoTelaEditar extends javax.swing.JFrame {
      * Creates new form OrcamentoTela
      */
     
-      public OrcamentoTelaEditar(paciente parciente) {
+      public OrcamentoTelaEditar(Orcamento Orcamento) {
         initComponents();
         this.paciente = paciente;
     }

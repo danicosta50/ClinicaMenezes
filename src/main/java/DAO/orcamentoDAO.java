@@ -35,7 +35,7 @@ public List<Orcamento> listar(int paciente_id) {
     EntityManager em = JPAUtil.getEntityManager();
     try {
         String textoquery = " SELECT o FROM Orcamento o "
-                + "WHERE ( O.id_paciente = :paciente_id ) "
+                + "WHERE ( o.paciente_id = :paciente_id ) "
                ;
         Query consultaSql = em.createQuery(textoquery);     
         

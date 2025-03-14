@@ -22,6 +22,16 @@ public class Orcamento {
    private int id_item;
 
     private int paciente_id;
+
+    public Orcamento(int id) {
+        this.id = id;
+    }
+
+    public Orcamento(int id, int id_item, int paciente_id) {
+        this.id = id;
+        this.id_item = id_item;
+        this.paciente_id = paciente_id;
+    }
  
 
 

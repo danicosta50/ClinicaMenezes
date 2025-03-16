@@ -53,12 +53,30 @@ public List<OrcamentoItem> listar() {
     }
 }
 
-    
+     public OrcamentoItem listarporId(Integer id){
+      EntityManager em = JPAUtil.getEntityManager();
+      try{
+         String textquery = "SELECT OI FROM OrcamentoItem OI WHERE  OI.id = :id";
+          Query consulta = em.createQuery(textquery, OrcamentoItem.class);
+           consulta.setParameter("id",id);
+          
+          return (OrcamentoItem) consulta.getSingleResult();
+      }
+      catch(Exception e){
+             
+               JOptionPane.showMessageDialog(null, "erro ao listar pacientes" + e);
+              throw e;
+                
+          }
+      finally{
+          JPAUtil.closeEntityManager();
+      }
+    } 
        
          public void excluir(int id){
       EntityManager em = JPAUtil.getEntityManager();
       try{
-        Orcamento o  = em.find(Orcamento.class, id);
+        OrcamentoItem o  = em.find(OrcamentoItem.class, id);
           if(o!= null){
               em.getTransaction().begin();
               em.remove(o);

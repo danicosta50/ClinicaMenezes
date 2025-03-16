@@ -16,9 +16,10 @@ import jakarta.persistence.Id;
  */
 @Entity
 public class Orcamento {
-      @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    
    private int id_item;
 
     private int paciente_id;
@@ -29,6 +30,15 @@ public class Orcamento {
 
     public Orcamento(int id, int id_item, int paciente_id) {
         this.id = id;
+        this.id_item = id_item;
+        this.paciente_id = paciente_id;
+    }
+
+    public Orcamento() {
+    }
+    
+
+    public Orcamento(int id_item, int paciente_id) {
         this.id_item = id_item;
         this.paciente_id = paciente_id;
     }

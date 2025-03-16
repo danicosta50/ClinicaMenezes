@@ -9,6 +9,7 @@ import DAO.OrcamentoItemDAO;
 import DAO.consultaDAO;
 import classes.OrcamentoItem;
 import classes.consulta;
+import classes.paciente;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;

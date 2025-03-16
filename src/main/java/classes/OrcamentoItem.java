@@ -14,9 +14,11 @@ public class OrcamentoItem {
       @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private String item;
+
    private int valor;
     private String Descricao;
-    private String item;
+   
     
  
 

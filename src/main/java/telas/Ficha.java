@@ -5,8 +5,12 @@
  */
 package telas;
 
+import DAO.OrcamentoItemDAO;
 import DAO.consultaDAO;
+import DAO.orcamentoDAO;
 import DAO.pacienteDAO;
+import classes.Orcamento;
+import classes.OrcamentoItem;
 import classes.consulta;
 import classes.paciente;
 import java.text.SimpleDateFormat;
@@ -64,11 +68,37 @@ public class Ficha extends javax.swing.JFrame {
 
         
       TabelaListaConsultas.setModel(tabeloModelo);
+      preenchertabelaorcamento();
   
     }
 
 
-     
+     public void preenchertabelaorcamento(){
+          String[] colunas = { "Id", "Item","Descrição", "Valor"};
+        DefaultTableModel tabeloModelo = new DefaultTableModel(colunas, 0);
+       orcamentoDAO orcamentoDAO = new orcamentoDAO();
+       OrcamentoItemDAO OrcamentoItemDAO  = new OrcamentoItemDAO();
+       List<OrcamentoItem> ListaItens = OrcamentoItemDAO.listar();
+        List<Orcamento> lista= orcamentoDAO.listar(paciente.getId());
+                 for(int i = 0; i < lista.size(); i++) {
+                    // Extraímos os dados
+                    Orcamento orcamento = lista.get(i);
+                    Integer Id_item = orcamento.getId_item();
+                    OrcamentoItem OrcamentoItem = OrcamentoItemDAO.listarporId(Id_item);
+                  //  OrcamentoItem OrcamentoItem = ListaItens.get(orcamento.getId_item()-1);
+                   //vai ter que pegar cada orcamento, e pelo id do item deste orcamento, pegar descricao, nome, etc deste item
+
+                    String[] linha = { 
+                       String.valueOf(orcamento.getId()) ,OrcamentoItem.getItem(),OrcamentoItem.getDescricao(),Integer.toString(OrcamentoItem.getValor())
+                    };
+                    tabeloModelo.addRow(linha);
+
+                    tabelaorcamento.setModel(tabeloModelo);
+
+                     tabelaorcamento.repaint();
+    }
+        
+     }
 
 
     /**
@@ -93,7 +123,7 @@ public class Ficha extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaorcamento = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -164,10 +194,10 @@ public class Ficha extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel11.setText("Orçamento");
+        jLabel11.setText("Orçamentos:");
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaorcamento.setBackground(new java.awt.Color(255, 255, 255));
+        tabelaorcamento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -178,7 +208,7 @@ public class Ficha extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane3.setViewportView(jTable1);
+        jScrollPane3.setViewportView(tabelaorcamento);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -193,14 +223,13 @@ public class Ficha extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 687, Short.MAX_VALUE)
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jScrollPane2))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 673, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2))
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 673, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton2)))
                 .addContainerGap(92, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -208,24 +237,25 @@ public class Ficha extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel11)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton4)
                     .addComponent(jButton2))
-                .addContainerGap())
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -292,6 +322,6 @@ public class Ficha extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabelaorcamento;
     // End of variables declaration//GEN-END:variables
 }

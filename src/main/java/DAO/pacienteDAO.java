@@ -40,8 +40,8 @@ import static org.hibernate.bytecode.BytecodeLogging.LOGGER;
           Query paciente = em.createQuery(textquery);
            paciente.setParameter("nome", nome.isEmpty() ? null : "%" + nome + "%" );
            paciente.setParameter("cpf",cpf.isEmpty()?null:"%" + cpf + "%");
-          List<paciente> podcasts = paciente.getResultList();
-          return podcasts;
+          List<paciente> pacientes = paciente.getResultList();
+          return pacientes;
       }
       catch(Exception e){
               em.getTransaction().rollback();

@@ -28,6 +28,7 @@ public class cadastro_consulta extends javax.swing.JFrame {
      */
     public cadastro_consulta(){
      initComponents();
+     setLocationRelativeTo(null);
         String[] colunas = { "Nome", "CPF"};
         DefaultTableModel tabeloModelo = new DefaultTableModel(colunas, 0);
         pacienteDAO pacienteDAO = new pacienteDAO();

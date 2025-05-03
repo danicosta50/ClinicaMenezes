@@ -20,7 +20,7 @@ public class ListaPacientesTela1 extends javax.swing.JFrame {
 
  public ListaPacientesTela1() {
         initComponents();
-        
+        setLocationRelativeTo(null);
         String[] colunas = { "Nome", "CPF"};
         DefaultTableModel tabeloModelo = new DefaultTableModel(colunas, 0);
         pacienteDAO pacienteDAO = new pacienteDAO();

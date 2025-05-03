@@ -23,6 +23,7 @@ public class Lista_Consultas extends javax.swing.JPanel {
      */
     public Lista_Consultas() {
         initComponents();
+        
           String[] colunas = { "Paciente", "Data da consulta"};
         DefaultTableModel tabeloModelo = new DefaultTableModel(colunas, 0);
         consultaDAO consultaDAO=new consultaDAO();

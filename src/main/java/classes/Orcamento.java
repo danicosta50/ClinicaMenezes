@@ -23,6 +23,7 @@ public class Orcamento {
    private int id_item;
 
     private int paciente_id;
+    private boolean pago;
 
     public Orcamento(int id) {
         this.id = id;
@@ -32,6 +33,7 @@ public class Orcamento {
         this.id = id;
         this.id_item = id_item;
         this.paciente_id = paciente_id;
+        this.pago = false;
     }
 
     public Orcamento() {
@@ -41,6 +43,15 @@ public class Orcamento {
     public Orcamento(int id_item, int paciente_id) {
         this.id_item = id_item;
         this.paciente_id = paciente_id;
+        this.pago = false;
+    }
+
+    public boolean isPago() {
+        return pago;
+    }
+
+    public void setPago(boolean pago) {
+        this.pago = pago;
     }
  
 
@@ -51,7 +62,7 @@ public Orcamento(paciente paciente){
  
     
     this.paciente_id = paciente.getId();
-    
+    this.pago = false;
    
 }
 

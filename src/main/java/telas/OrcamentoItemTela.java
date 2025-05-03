@@ -27,6 +27,7 @@ public class OrcamentoItemTela extends javax.swing.JFrame {
     public OrcamentoItemTela() {
         initComponents();
         preenchertabela();
+        setLocationRelativeTo(null);
     }
 private void preenchertabela(){
           String[] colunas = { "Id", "Item","Descrição","Valor"};
@@ -117,10 +118,10 @@ private void preenchertabela(){
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Selecionar)
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap(143, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(344, Short.MAX_VALUE)
+                    .addContainerGap(317, Short.MAX_VALUE)
                     .addComponent(jButton2)
                     .addGap(149, 149, 149)))
         );
@@ -138,7 +139,8 @@ private void preenchertabela(){
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();

@@ -16,6 +16,7 @@ public class Inicio_tela extends javax.swing.JFrame {
      */
     public Inicio_tela() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

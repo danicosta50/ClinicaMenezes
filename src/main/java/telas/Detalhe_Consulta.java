@@ -18,10 +18,12 @@ public class Detalhe_Consulta extends javax.swing.JFrame {
   consulta consulta;
     public Detalhe_Consulta() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
  public Detalhe_Consulta(Lista_Consultas Tela_inicial, consulta consulta) {
     initComponents();
+    setLocationRelativeTo(null);
     this.Tela_inicial = Tela_inicial;
     this.consulta = consulta;
 
@@ -35,6 +37,7 @@ public class Detalhe_Consulta extends javax.swing.JFrame {
 
 public Detalhe_Consulta(consulta consulta) {
     initComponents();
+    setLocationRelativeTo(null);
     this.consulta = consulta;
 
     TxtReceitaObs.setText(consulta.getReceitaObservacoes());

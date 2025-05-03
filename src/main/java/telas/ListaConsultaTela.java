@@ -25,6 +25,7 @@ public class ListaConsultaTela extends javax.swing.JFrame {
      */
     public ListaConsultaTela() {
         initComponents();
+        setLocationRelativeTo(null);
         
           String[] colunas = { "Paciente", "Data da consulta"};
         DefaultTableModel tabeloModelo = new DefaultTableModel(colunas, 0);
@@ -86,7 +87,10 @@ private void buscarConsultas() {
          String[] colunas = { "Nome do paciente", "Data da consulta" };
      DefaultTableModel tabelaModelo = new DefaultTableModel(colunas, 0); 
      for (consulta consulta : lista) {
-         String[] linha = { consulta.getNomePaciente(), consulta.getDataConsulta().toString()};
+         Date dataConsulta = consulta.getDataConsulta(); 
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); 
+        String dataConsultaString = dateFormat.format(dataConsulta);
+         String[] linha = { consulta.getNomePaciente(), dataConsultaString};
       tabelaModelo.addRow(linha); } 
      TabelaListaConsultas.setModel(tabelaModelo); 
      }

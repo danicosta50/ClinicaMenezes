@@ -16,6 +16,7 @@ public class Pacientes extends javax.swing.JFrame {
      */
     public Pacientes() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

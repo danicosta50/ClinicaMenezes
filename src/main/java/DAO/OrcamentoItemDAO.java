@@ -73,25 +73,37 @@ public List<OrcamentoItem> listar() {
       }
     } 
        
-         public void excluir(int id){
-      EntityManager em = JPAUtil.getEntityManager();
-      try{
-        OrcamentoItem o  = em.find(OrcamentoItem.class, id);
-          if(o!= null){
-              em.getTransaction().begin();
-              em.remove(o);
-              em.getTransaction().commit();
-          }
-      }catch(Exception e){
-          em.getTransaction().rollback();
-           JOptionPane.showMessageDialog(null, "erro ao excluir" + e);
-          throw e;
-      }
-      finally{
-          JPAUtil.closeEntityManager();
-      }
-    }  
-         
+   public void excluir(int id) {
+    EntityManager em = JPAUtil.getEntityManager();
+    try {
+        // Verifica se existe um Orcamento vinculado ao OrcamentoItem
+        Query consulta = em.createQuery("SELECT COUNT(o) FROM Orcamento o WHERE o.id_item = :id");
+        consulta.setParameter("id", id);
+        Long qtdOrcamentos = (Long) consulta.getSingleResult(); // Obtém a quantidade de registros encontrados
+
+        if (qtdOrcamentos > 0) {
+            JOptionPane.showMessageDialog(null, "Não é possível excluir este item. Ele está vinculado a um orçamento.");
+            return; // Sai do método sem excluir
+        }
+
+        // Prossegue com a exclusão se não houver vínculos
+        OrcamentoItem o = em.find(OrcamentoItem.class, id);
+        if (o != null) {
+            em.getTransaction().begin();
+            em.remove(o);
+            em.getTransaction().commit();
+        }
+    } catch (Exception e) {
+        if (em.getTransaction().isActive()) {
+            em.getTransaction().rollback();
+        }
+        JOptionPane.showMessageDialog(null, "Erro ao excluir: " + e.getMessage());
+        throw e;
+    } finally {
+        em.close(); // Fecha o EntityManager corretamente
+    }
+}
+ 
          
    public void atualizar(OrcamentoItem orcamentoItem){
       EntityManager em = JPAUtil.getEntityManager();

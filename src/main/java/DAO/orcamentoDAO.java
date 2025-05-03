@@ -55,6 +55,26 @@ public List<Orcamento> listar(int paciente_id) {
     }
 }
 
+public Orcamento listarporId(int id) {  
+    EntityManager em = JPAUtil.getEntityManager();
+    try {
+        String textoquery = "SELECT o FROM Orcamento o WHERE o.id = :id";
+        Query consultaSql = em.createQuery(textoquery);
+        consultaSql.setParameter("id", id); // Definir o parâmetro
+
+        List<Orcamento> resultado = consultaSql.getResultList(); // Melhor abordagem para evitar exceção
+        if (resultado.isEmpty()) {
+            return null; // Retorna null se não encontrar o orçamento
+        }
+        return resultado.get(0); // Retorna o primeiro elemento da lista
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Erro ao selecionar orçamento: " + e.getMessage());
+        throw e;
+    } finally {
+        JPAUtil.closeEntityManager();
+    }
+}
+
     
        
          public void excluir(int id){
@@ -86,7 +106,7 @@ public List<Orcamento> listar(int paciente_id) {
               em.getTransaction().begin();
              o.setId_item(orcamento.getId_item());
              o.setPaciente_id(orcamento.getPaciente_id());
-            
+             o.setPago(orcamento.isPago());
              
             
               em.getTransaction().commit();

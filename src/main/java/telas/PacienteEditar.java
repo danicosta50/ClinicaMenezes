@@ -19,9 +19,11 @@ public class PacienteEditar extends javax.swing.JFrame {
         
     public PacienteEditar(){
              initComponents();
+             setLocationRelativeTo(null);
     }
       public PacienteEditar(paciente paciente) {
         initComponents();
+        setLocationRelativeTo(null);
        this.paciente = paciente;
        TxtNome.setText(paciente.getNome());
         TxtCPF.setText(paciente.getCpf());
